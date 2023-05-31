@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher List</title>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students}">School Manegment</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<div class="container">
+    <h1>Teacher List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>last name</th>
+            
+            <th>Email</th>
+           
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.id}"></td>
+            <td th:text="${teacher.firstName}"></td>
+            <td th:text="${teacher.lastName}"></td>
+            <td th:text="${teacher.email}"></td>
+            
+            <td>
+                <a th:href="@{/teachers/edit/{id}(id=${teacher.id})}" class="btn btn-sm btn-primary">Edit</a>
+                <a th:href="@{/teachers/{id}(id=${teacher.id})}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{teachers/teacher/new}" class="btn btn-primary">Add Teacher</a>
+</div>
+</body>
+</html>
